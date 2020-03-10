@@ -1,0 +1,9 @@
+<div>
+  <div>
+    {{ cardTitle }}
+    <button (click)="toggle()"> {{ opened ? 'Close' : 'Open' }}</button>
+  </div>
+  <div *ngIf="opened">
+    <ng-content></ng-content>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+:host{
+  display: block;
+  background-color: cornflowerblue;
+  min-height: 80px;
+  color: white;
+  /*   position:relative; */
+}
+
+div>div{
+  padding:5px;
+  background-color: cornflowerblue;
+}
+
+div>div:nth-child(2){
+  background-color: rgb(24, 60, 128);
+  min-height: 30px;
+  /*   position:relative;
+    bottom: 0; */
+
+
+}

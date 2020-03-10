@@ -1,0 +1,20 @@
+<lkb-view-home>
+  <h1 class="view-title">Welcome</h1>
+
+  <lkb-ui-card [opened]="true">
+    <code>{{ credentials | json }}</code>
+    <hr>
+    <code> Store {{ store.state$ |select:'currentUser' | async | json }}</code>
+    <hr>
+    <input type="text" placeholder="Username" [(ngModel)]="credentials.username">
+    <input type="password" placeholder="Password" [(ngModel)]="credentials.password">
+
+    <lkb-ui-button
+      level="PRIMARY"
+      (click)="click$.next($event)"
+      [lkbUiEffect]="1.1">
+      Connect
+    </lkb-ui-button>
+
+  </lkb-ui-card>
+</lkb-view-home>

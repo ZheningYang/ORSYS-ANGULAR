@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "doc:lkb": "compodoc -p ./projects/lkb/tsconfig.lib.json",
+    "doc:dash": "compodoc -p ./projects/dashboard/tsconfig.app.json",
     "ng": "ng",
     "start": "ng serve --project=dashboard",
     "build": "ng build",

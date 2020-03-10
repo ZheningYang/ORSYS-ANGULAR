@@ -1,0 +1,7 @@
+:host>div{
+  border:1px solid gray;
+  background: white;
+  border-radius: 5px;
+  padding:5px;
+  font-family: Arial, Helvetica, sans-serif;
+}

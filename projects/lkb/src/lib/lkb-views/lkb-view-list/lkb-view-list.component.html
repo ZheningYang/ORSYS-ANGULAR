@@ -1,0 +1,17 @@
+<lkb-ui-layout layout="column">
+
+  <lkb-ui-header>
+    <div class=".ui-header-content">
+      <ng-content select=".view-title"></ng-content>
+    </div>
+    <div class=".ui-header-nab">
+      <ng-content select=".view-nav"></ng-content>
+    </div>
+  </lkb-ui-header>
+  <main>
+    <lkb-ui-layout layout="column">
+      <ng-content></ng-content>
+    </lkb-ui-layout>
+  </main>
+
+</lkb-ui-layout>
