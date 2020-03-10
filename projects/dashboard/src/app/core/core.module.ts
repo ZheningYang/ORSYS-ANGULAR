@@ -4,12 +4,14 @@ import {CommentsService} from './comments.service';
 import {SearchService} from './search.service';
 import {StoreService} from './store.service';
 import {BASE_HREF} from './tokens';
+import {BrokerService} from './broker.service';
 
 
 @NgModule({
   declarations: [],
   imports: [],
   providers: [
+    BrokerService,
     AuthService,
     CommentsService,
     SearchService,

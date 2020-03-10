@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {ActionTypes} from './action-types.enum';
 import {BehaviorSubject} from 'rxjs';
+import {BrokerService} from './broker.service';
 
 // Les interfaces se disparaissent au moment de compilation Javascript
 export interface Action {
@@ -20,7 +21,7 @@ export class StoreService {
 
   history = [];
 
-  constructor() {
+  constructor(private broker: BrokerService) {
     window['getHistory'] = () => {
       console.groupCollapsed('Application Actions History');
       console.table(this.history);
@@ -30,6 +31,8 @@ export class StoreService {
 
   dispatcher(action: Action): BehaviorSubject<any> {
     this.history.push({time: Date.now(), ...action});
+
+    this.broker.pubsub.publish(action.type, action.data);
 
     const delay = 5000 * Math.random();
     setTimeout(() => {
