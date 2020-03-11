@@ -23,7 +23,5 @@ import { SelectPipe } from './select.pipe';
 export class SharedModule {
 
   constructor() {
-    console.log(this);
-
   }
 }

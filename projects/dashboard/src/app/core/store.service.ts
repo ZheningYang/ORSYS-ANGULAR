@@ -1,7 +1,9 @@
-import {Injectable} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {ActionTypes} from './action-types.enum';
 import {BehaviorSubject} from 'rxjs';
 import {BrokerService} from './broker.service';
+import {AuthService} from './auth.service';
+import {AUTH_SERVICE_TOKEN} from './app.guard';
 
 // Les interfaces se disparaissent au moment de compilation Javascript
 export interface Action {
@@ -21,7 +23,9 @@ export class StoreService {
 
   history = [];
 
-  constructor(private broker: BrokerService) {
+  constructor(private broker: BrokerService,
+              @Inject(AUTH_SERVICE_TOKEN) private auth: AuthService) {
+
     window['getHistory'] = () => {
       console.groupCollapsed('Application Actions History');
       console.table(this.history);
@@ -29,16 +33,19 @@ export class StoreService {
     };
   }
 
-  dispatcher(action: Action): BehaviorSubject<any> {
+  dispatch(action: Action): BehaviorSubject<any> {
     this.history.push({time: Date.now(), ...action});
+    // this.broker.pubsub.publish(action.type, action.data);
 
-    this.broker.pubsub.publish(action.type, action.data);
-
-    const delay = 5000 * Math.random();
-    setTimeout(() => {
-      console.log('done');
-      this.state$.next({currentUser: action.data});
-    }, delay);
+    switch (action.type) {
+      case ActionTypes.AUTH:
+        this.auth.connect(action.data).subscribe(res => this.state$.next({currentUser: res}));
+        break;
+      case ActionTypes.COMMENTS:
+        break;
+      default:
+        break;
+    }
 
     return this.state$;
   }

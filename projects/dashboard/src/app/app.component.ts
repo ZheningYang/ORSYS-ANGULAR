@@ -11,7 +11,7 @@ export class AppComponent {
   title = 'dashboard';
 
   constructor(private broker: BrokerService) {
-    console.log(broker);
+    // console.log(broker);
     broker.pubsub.subscribe(ActionTypes.APPLICATION, (msg, data) => console.log(msg, data));
   }
 }

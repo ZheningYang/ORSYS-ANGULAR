@@ -1,12 +1,20 @@
 <lkb-view-home>
   <h1 class="view-title">Welcome</h1>
+  <!--  <h3 class="ui-header-nab">toto</h3>-->
 
-  <lkb-ui-card [opened]="true">
+  <lkb-ui-card [opened]="true" #card>
     <code>{{ credentials | json }}</code>
     <hr>
-    <code> Store {{ store.state$ |select:'currentUser' | async | json }}</code>
+    <code>Merged {{ merged$  | async | json }}</code>
     <hr>
-    <input type="text" placeholder="Username" [(ngModel)]="credentials.username">
+    <code>Connecting {{ connecting$  | async | json }}</code>
+    <hr>
+    <code>Store {{ store.state$ |select:'currentUser' | async | json }}</code>
+    <hr>
+    <input type="text"
+           placeholder="Username"
+           [(ngModel)]="credentials.username"
+           #name="ngModel"> {{ name.dirty }}
     <input type="password" placeholder="Password" [(ngModel)]="credentials.password">
 
     <lkb-ui-button

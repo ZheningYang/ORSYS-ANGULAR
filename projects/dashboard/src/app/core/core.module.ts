@@ -5,6 +5,7 @@ import {SearchService} from './search.service';
 import {StoreService} from './store.service';
 import {BASE_HREF} from './tokens';
 import {BrokerService} from './broker.service';
+import {ConnectorService} from './connector.service';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import {BrokerService} from './broker.service';
     AuthService,
     CommentsService,
     SearchService,
-    StoreService
+    StoreService,
+    ConnectorService
   ]
 })
 export class CoreModule {
